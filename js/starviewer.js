@@ -32,9 +32,9 @@ rotate = (a, b, angle) => [
 ];
 stars = [];
 for (i = 0; i < 15000; i += 1) {
-    x = (10 - randn_bm() * 20) * 180;
-    y = (20 - randn_bm() * 40) * 180;
-    z = (20 - randn_bm() * 40) * 180;
+    x = (10 - randn_bm() * 20) * randn_bm()*180;
+    y = (20 - randn_bm() * 40) * randn_bm()*180;
+    z = (20 - randn_bm() * 40) * randn_bm()*180;
     color = "#FFFFfe"//genHexColor();
     size = randn_bm() * 10
     stars.push({ x, y, z, size, color });
