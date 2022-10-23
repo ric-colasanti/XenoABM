@@ -36,7 +36,7 @@ for (i = 0; i < 15000; i += 1) {
     y = (20 - randn_bm() * 40) * randn_bm()*180;
     z = (20 - randn_bm() * 40) * randn_bm()*180;
     color = "#FFFFfe"//genHexColor();
-    size = randn_bm() * 10
+    size = 1//randn_bm() * 10
     stars.push({ x, y, z, size, color });
 
 }
