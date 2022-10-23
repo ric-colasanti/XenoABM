@@ -9,20 +9,61 @@ w = a.width / 2;
 h = a.height / 2;
 perspective = 500;
 
+
+// Define the Murmur3Hash function
+function MurmurHash3(string) {
+    let i = 0;
+    for (i, hash = 1779033703 ^ string.length; i < string.length; i++) {
+        let bitwise_xor_from_character = hash ^ string.charCodeAt(i);
+        hash = Math.imul(bitwise_xor_from_character, 3432918353);
+        hash = hash << 13 | hash >>> 19;
+    } return () => {
+       // Return the hash that you can use as a seed
+        hash = Math.imul(hash ^ (hash >>> 16), 2246822507);
+        hash = Math.imul(hash ^ (hash >>> 13), 3266489909);
+        return (hash ^= hash >>> 16) >>> 0;
+    }
+}
+
+function SimpleFastCounter32(seed_1, seed_2, seed_3, seed_4) {
+    return () => {
+      seed_1 >>>= 0; seed_2 >>>= 0; seed_3 >>>= 0; seed_4 >>>= 0;
+      let cast32 = (seed_1 + seed_2) | 0;
+      seed_1 = seed_2 ^ seed_2 >>> 9;
+      seed_2 = seed_3 + (seed_3 << 3) | 0;
+      seed_3 = (seed_3 << 21 | seed_3 >>> 11);
+      seed_4 = seed_4 + 1 | 0;
+      cast32 = cast32 + seed_4 | 0;
+      seed_3 = seed_3 + cast32 | 0;
+      return (cast32 >>> 0) / 4294967296;
+    }
+}
+
+let generate_seed = MurmurHash3("String for the Seed Key");
+let random_number = SimpleFastCounter32(generate_seed(), generate_seed())
+console.log(random_number());
+
+
+
 function randn_bm() {
     let u = 0, v = 0;
-    while (u === 0) u = Math.random(); //Converting [0,1) to (0,1)
-    while (v === 0) v = Math.random();
+    while (u === 0) u = random_number(); //Converting [0,1) to (0,1)
+    while (v === 0) v = random_number();
     let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
     num = num / 10.0 + 0.5; // Translate to 0 -> 1
     if (num > 1 || num < 0) return randn_bm() // resample between 0 and 1
     return num
 }
 
-document.addEventListener('keydown', function(event) {
-  if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
-    zoomFlag = !zoomFlag
-  }
+document.addEventListener('keydown', function (event) {
+    if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
+        zoomFlag = !zoomFlag
+    }
+    zoom = "Off"
+    if (zoomFlag) {
+        zoom = "On"
+    }
+    document.getElementById("zoom").innerHTML = zoom
 });
 
 
@@ -32,9 +73,9 @@ rotate = (a, b, angle) => [
 ];
 stars = [];
 for (i = 0; i < 15000; i += 1) {
-    x = (10 - randn_bm() * 20) * randn_bm()*180;
-    y = (20 - randn_bm() * 40) * randn_bm()*180;
-    z = (20 - randn_bm() * 40) * randn_bm()*180;
+    x = (10 - randn_bm() * 20) * randn_bm() * 180;
+    y = (20 - randn_bm() * 40) * randn_bm() * 180;
+    z = (20 - randn_bm() * 40) * randn_bm() * 180;
     color = "#FFFFfe"//genHexColor();
     size = 1//randn_bm() * 10
     stars.push({ x, y, z, size, color });
@@ -52,9 +93,9 @@ function genHexColor() {
     out = ""
 
     for (let i = 0; i < 2; ++i) {
-        out += hex.charAt(Math.floor(Math.random() * hex.length));
+        out += hex.charAt(Math.floor(random_number * hex.length));
     }
-    output ="#"+out+out+"00"
+    output = "#" + out + out + "00"
     return output;
 }
 
@@ -78,7 +119,6 @@ const newShade = (hexColor, magnitude) => {
     }
 };
 a.onmousedown = function (down) {
-    console.log("down", down);
     downFlag = true;
     // Record click position
     position.x = down.clientX;
@@ -90,12 +130,10 @@ a.onmouseup = function (up) {
 };
 
 a.onmousemove = function (move) {
-    console.log("move", downFlag);
     if (downFlag) {
         if (zoomFlag) {
-            camz += -(position.y - move.clientY) *100
+            camz += -(position.y - move.clientY) * 100
             position.y = move.clientY
-            console.log(camz);
         } else {
             camYaw += -(position.x - move.clientX) / 200
             camRoll += -(position.y - move.clientY) / 200
@@ -103,12 +141,12 @@ a.onmousemove = function (move) {
             position.y = move.clientY
         }
         draw()
+        document.getElementById("camz").innerHTML = camz;
     }
 };
 
 
 var moveCam = function () {
-    console.log("move");
     camPitch += .01;
     camYaw += .01;
     camRoll += .01;
@@ -117,7 +155,7 @@ var moveCam = function () {
 
 draw = function () {
     a.width = a.width;
-    c.rect(0,0,a.width,a.height)
+    c.rect(0, 0, a.width, a.height)
     c.fillStyle = "#000015"
     c.fill();
     points = [];
@@ -131,7 +169,7 @@ draw = function () {
         x -= camx;
         y -= camy;
         z -= camz;
-        color =  stars[i].color;
+        color = stars[i].color;
         size = stars[i].size
         points.push({ x, y, z, size, color });
     }
@@ -141,12 +179,12 @@ draw = function () {
         x = points[i].x;
         y = points[i].y;
         z = points[i].z;
-        color = newShade(points[i].color, -250 * (points.length-i)/points.length);
-        
-        
-            
-            size = points[i].size / z * perspective;
-        if (size<0.5){size = 0.5}
+        color = newShade(points[i].color, -250 * (points.length - i) / points.length);
+
+
+
+        size = points[i].size / z * perspective;
+        if (size < 0.5) { size = 0.5 }
         if (z > 0) {
             X = w + x / z * perspective;
             Y = h + y / z * perspective;

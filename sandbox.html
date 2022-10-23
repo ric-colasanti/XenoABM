@@ -4,15 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Cutive+Mono">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cutive+Mono"
+    />
 
     <title>Document</title>
 
     <style>
       body {
         font-family: "Cutive Mono", monospace;
-        background-color: #000015; 
+        background-color: #000015;
         color: white;
         font-size: large;
       }
@@ -25,19 +27,57 @@
         width: 800px;
         height: 800px;
       }
+      .slider {
+        -webkit-appearance: none;
+      }
+      .slider{
+        height:2px
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
+        padding: 10px;
+      }
+      .grid-container > div {
+        text-align: left;
+        padding: 20px 0;
+      }
+      .canvas {
+        grid-column: 1 / 5;
+      }
     </style>
   </head>
   <body>
     <p>Pure JavaScript galaxy viewer ( well 15000 stars any way)</p>
-    <canvas id="a" width="600" height="600"></canvas>
-    <script src="js/starviewer.js"></script>
     <ul>
-      <li>Move mouse with right button down to change view</li>
-      <li>
-        ctr z to change to zoom mode. Move mouse up and down with right button
-        down to change zoom
-      </li>
-      <li>ctr z again to change back to move mode</li>
-    </ul>
+        <li>Move mouse with right button down to change view</li>
+        <li>
+          ctr z to change to zoom mode. Move mouse up and down with right button
+          down to change zoom
+        </li>
+        <li>ctr z again to change back to move mode</li>
+      </ul>
+      <br>
+    <div class="grid-container" style="color: lightgreen;">
+        <div>
+        <div class="grid-container">
+            <div>Zoom:</div>
+            <div><span id="zoom">Off</span></div>
+        </div>
+        <div class="grid-container">
+            <div>camz:</div>
+            <div> <span id="camz">-10000</span></div>
+        </div>
+        <div class="grid-container">
+        
+            <!-- <div><input type="range" min="1" max="100" value="50" class="slider" /></div>  
+            <div></div>    -->
+        </div>
+    </div>
+    <canvas id="a" width="600" height="600"></canvas>
+</div>
+    <script src="js/starviewer.js"></script>
+    
   </body>
 </html>
