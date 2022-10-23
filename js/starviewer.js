@@ -9,8 +9,20 @@ camRoll = 25;
 w = canvas.width / 2;
 h = canvas.height / 2;
 perspective = 500;
+
 probPlanets = 0.0
+probHabitable = 0.0
+probLife = 0.0
+probIntelligence = 0.0
+probTechnology = 0.0
+
 probShowAll = true
+probShowPlanets = true
+probShowHabitable = true
+probShowLife = true
+probShowIntelligence = true
+probShowTechnology = true
+
 
 
 // Define the Murmur3Hash function
@@ -109,10 +121,64 @@ document.getElementById("plantSlider").addEventListener('change', function (e) {
     draw()
 });
 
-document.getElementById("justplanets").addEventListener('change', function (e) {
-    probShowAll = ! this.checked;
+document.getElementById("habitableSlider").addEventListener('change', function (e) {
+    probHabitable = this.value / 15000;
+    document.getElementById("habitable").innerHTML = probHabitable.toFixed(5)
     draw()
 });
+
+document.getElementById("lifeSlider").addEventListener('change', function (e) {
+    probLife = this.value / 15000;
+    document.getElementById("life").innerHTML = probLife.toFixed(5)
+    draw()
+});
+
+document.getElementById("intelligentSlider").addEventListener('change', function (e) {
+    probIntelligent = this.value / 15000;
+    document.getElementById("intelligent").innerHTML = probIntelligent.toFixed(5)
+    draw()
+});
+
+document.getElementById("technologySlider").addEventListener('change', function (e) {
+    probTechnology = this.value / 15000;
+    document.getElementById("technology").innerHTML = probTechnology.toFixed(5)
+    draw()
+});
+
+
+document.getElementById("stars").addEventListener('change', function (e) {
+    probShowAll = this.checked;
+    draw()
+});
+
+document.getElementById("justplanets").addEventListener('change', function (e) {
+    probShowPlanets = this.checked;
+    draw()
+});
+
+
+document.getElementById("test").addEventListener('change', function (e) {
+    probShowHabitable = this.checked;
+    
+    draw()
+});
+
+
+document.getElementById("clife").addEventListener('change', function (e) {
+    probShowLife = this.checked;
+    draw()
+});
+
+
+// document.getElementById("cintelligent").addEventListener('change', function (e){
+//     probShowIntelligence = this.checked;
+//     draw()
+// });
+
+// document.getElementById("ctechnology").addEventListener('change', function (e) {
+//     probShowTechnology = this.checked;
+//     draw()
+// });
 
 
 rotate = (a, b, angle) => [
@@ -164,13 +230,17 @@ var moveCam = function () {
 
 
 class Star {
-    constructor(x, y, z, size, color, planets) {
+    constructor(x, y, z, size, color, planets,habitable,life,intelligence,technology) {
         this.x = x;
         this.y = y;
         this.z = z;
         this.size = size;
         this.color = color;
         this.planets = planets;
+        this.habitable = habitable
+        this.life = life;
+        this.intelligence = intelligence
+        this.technology =   technology
     }
 }
 
@@ -184,7 +254,11 @@ for (i = 0; i < 15000; i += 1) {
     color = [255, 255, 255]
     size = 3//randn_bm() * 10
     planets = random_number()
-    stars.push(new Star(x, y, z, size, color, planets));
+    habitable = random_number()
+    life = random_number()
+    intelligence = random_number()
+    technology = random_number()
+    stars.push(new Star(x, y, z, size, color, planets,habitable,life,intelligence,technology));
 
 }
 downFlag = false
@@ -208,10 +282,27 @@ draw = function () {
         color = stars[i].color;
         size = stars[i].size
         if (z > camz) {
+           
             if (probShowAll) {
                 points.push({ x, y, z, size, color });
-            } else {
+            } else if (probShowPlanets){
                 if (stars[i].planets < probPlanets) {
+                    points.push({ x, y, z, size, color });
+                }
+            }else if (probShowHabitable){
+                if ((stars[i].habitable < probHabitable) && (stars[i].planets < probPlanets)) {
+                    points.push({ x, y, z, size, color });
+                }
+            }else if (probShowLife){
+                if ((stars[i].habitable < probHabitable) && (stars[i].planets < probPlanets) && (stars[i].life < probLife)) {
+                    points.push({ x, y, z, size, color });
+                }
+            }else if (probShowIntelligence){
+                if ((stars[i].intelligence < probIntelligence) && (stars[i].habitable < probHabitable) && (stars[i].planets < probPlanets) && (stars[i].life < probLife)) {
+                    points.push({ x, y, z, size, color });
+                }
+            }else if (probShowTechnology){
+                if ((stars[i].technology < probTechnology) && (stars[i].intelligence < probIntelligence) && (stars[i].habitable < probHabitable) && (stars[i].planets < probPlanets) && (stars[i].life < probLife)) {
                     points.push({ x, y, z, size, color });
                 }
             }

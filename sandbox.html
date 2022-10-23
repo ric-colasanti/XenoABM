@@ -37,12 +37,12 @@
       .grid-container {
         display: grid;
         grid-template-columns: auto auto;
-        gap: 10px;
-        padding: 10px;
+        gap: 2px;
+        padding: 2px;
       }
       .grid-container > div {
         text-align: left;
-        padding: 20px 0;
+        padding: 2px 0;
       }
       .canvas {
         grid-column: 1 / 5;
@@ -73,8 +73,8 @@
         </div>
     
         <div class="grid-container">
-          <div>Probability of planets:</div>
-          <div>
+          <div>Probability of planets.....:</div>
+          <div  style="float: right;">
             <input
               id="plantSlider"
               type="range"
@@ -86,10 +86,105 @@
             <span id="planets">0.00000</span>
           </div>
         </div>
+
+    
         <div class="grid-container">
-          <div>Show just stars with planets:</div>
-          <div><input type="checkbox" id="justplanets" /></div>
+          <div>Probability that habitable.:</div>
+          <div style="float: right;">
+            <input
+              id="habitableSlider"
+              type="range"
+              min="0"
+              max="15000"
+              value="0"
+              class="slider"
+            /><br />
+            <span id="habitable">0.00000</span>
+          </div>
         </div>
+
+    
+        <div class="grid-container">
+          <div>Probability of life........:</div>
+          <div style="float: right;">
+            <input
+              id="lifeSlider"
+              type="range"
+              min="0"
+              max="15000"
+              value="0"
+              class="slider"
+            /><br />
+            <span id="life">0.00000</span>
+          </div>
+        </div>
+
+    
+        <div class="grid-container">
+          <div>Probability of intelligence:</div>
+          <div style="float: right;">
+            <input
+              id="intelligentSlider"
+              type="range"
+              min="0"
+              max="15000"
+              value="0"
+              class="slider"
+            /><br />
+            <span id="intelligent">0.00000</span>
+          </div>
+        </div>
+
+
+    
+        <div class="grid-container">
+          <div>Probability of technology..:</div>
+          <div style="float: right;">
+            <input
+              id="technologySlider"
+              type="range"
+              min="0"
+              max="15000"
+              value="0"
+              class="slider"
+            /><br />
+            <span id="technology">0.00000</span>
+          </div>
+        </div>
+
+
+        
+        <div class="grid-container">
+          <div>Show all stars....................:</div>
+          <div><input type="checkbox" id="stars" checked /></div>
+        </div>
+
+        <div class="grid-container">
+          <div>Show stars with planets...........:</div>
+          <div><input type="checkbox" id="justplanets"checked /></div>
+        </div>
+
+        <div class="grid-container">
+          <div>Show stars with habitable planets :</div>
+          <div><input type="checkbox" id="test" checked/></div>
+        </div>
+
+        <div class="grid-container">
+          <div>Show stars with life..............:</div>
+          <div><input type="checkbox" id="clife" checked/></div>
+        </div>
+
+        <!-- <div class="grid-container">
+          <div>Show stars with intelligent life..:</div>
+          <div><input type="checkbox" id="cintelligent" checked/></div>
+        </div>
+
+        <div class="grid-container">
+          <div>Show stars with technology........:</div>
+          <div><input type="checkbox" id="ctechnology"checked /></div>
+        </div> -->
+
+
       </div>
       <canvas id="starfield" width="600" height="600"></canvas>
     </div>
