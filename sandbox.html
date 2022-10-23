@@ -30,8 +30,8 @@
       .slider {
         -webkit-appearance: none;
       }
-      .slider{
-        height:2px
+      .slider {
+        height: 2px;
       }
       .grid-container {
         display: grid;
@@ -51,38 +51,51 @@
   <body>
     <p>Pure JavaScript galaxy viewer ( well 15000 stars any way)</p>
     <ul>
-        <li>Move mouse with right button down to change view</li>
-        <li>
-          ctr z to change to zoom mode. Move mouse up and down with right button
-          down to change zoom
-        </li>
-        <li>ctr z again to change back to move mode</li>
-      </ul>
-      <br>
-    <div class="grid-container" style="color: lightgreen;">
-        <div>
+      <li>Move mouse with right button down to change view</li>
+      <li>
+        ctr z to change to zoom mode. Move mouse up and down with right button
+        down to change zoom
+      </li>
+      <li>ctr z again to change back to move mode</li>
+    </ul>
+    <br />
+    <div class="grid-container" style="color: lightgreen">
+      <div>
         <div class="grid-container">
-            <div>Zoom:</div>
-            <div><span id="zoom">Off</span></div>
+          <div>Zoom:</div>
+          <div><span id="zoom">Off</span></div>
         </div>
         <div class="grid-container">
-            <div>camz:</div>
-            <div> <span id="camz">-7000</span></div>
+          <div>camz:</div>
+          <div><span id="camz">-7000</span></div>
         </div>
         <div class="grid-container">
-            <div>Probability of planets:</div>
-            <div><input id="plantSlider" type="range" min="0" max="15000" value="0" class="slider" /><br> <span id="planets">0.00000</span>
-            </div>  
+          <div>Probability of planets:</div>
+          <div>
+            <input
+              id="plantSlider"
+              type="range"
+              min="0"
+              max="15000"
+              value="0"
+              class="slider"
+            /><br />
+            <span id="planets">0.00000</span>
+          </div>
         </div>
         <div class="grid-container">
-            <div>Show just stars with planets:</div>
-            <div><input type="checkbox" id="justplanets">
-            </div>  
+          <div>Show just stars with planets:</div>
+          <div><input type="checkbox" id="justplanets" /></div>
         </div>
+      </div>
+      <canvas id="starfield" width="600" height="600"></canvas>
     </div>
-    <canvas id="starfield" width="600" height="600"></canvas>
-</div>
+    <p style="font-size: small">
+      With thanks to
+      <a href="https://codepen.io/xem/pen/oOVYzg?editors=1010"> xem</a> for
+      starting point for the 3d viewer
+    </p>
+
     <script src="js/starviewer.js"></script>
-    
   </body>
 </html>
