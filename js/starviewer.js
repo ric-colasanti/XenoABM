@@ -1,12 +1,13 @@
-c = a.getContext("2d");
+canvas = document.getElementById("starfield")
+ctx = canvas.getContext("2d");
 camx = 0;
 camy = 0;
 camz = -10000;
 camYaw = 10;
 camPitch = 15;
 camRoll = 25;
-w = a.width / 2;
-h = a.height / 2;
+w = canvas.width / 2;
+h = canvas.height / 2;
 perspective = 500;
 
 
@@ -118,18 +119,18 @@ const newShade = (hexColor, magnitude) => {
         return hexColor;
     }
 };
-a.onmousedown = function (down) {
+canvas.onmousedown = function (down) {
     downFlag = true;
     // Record click position
     position.x = down.clientX;
     position.y = down.clientY;
 };
 
-a.onmouseup = function (up) {
+canvas.onmouseup = function (up) {
     downFlag = false;
 };
 
-a.onmousemove = function (move) {
+canvas.onmousemove = function (move) {
     if (downFlag) {
         if (zoomFlag) {
             camz += -(position.y - move.clientY) * 100
@@ -154,10 +155,9 @@ var moveCam = function () {
 }
 
 draw = function () {
-    a.width = a.width;
-    c.rect(0, 0, a.width, a.height)
-    c.fillStyle = "#000015"
-    c.fill();
+    ctx.rect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = "#000015"
+    ctx.fill();
     points = [];
     for (i in stars) {
         x = stars[i].x;
@@ -188,10 +188,10 @@ draw = function () {
         if (z > 0) {
             X = w + x / z * perspective;
             Y = h + y / z * perspective;
-            c.beginPath();
-            c.arc(X, Y, size, 0, 2 * Math.PI);
-            c.fillStyle = color;
-            c.fill();
+            ctx.beginPath();
+            ctx.arc(X, Y, size, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.fill();
         }
     }
 }
