@@ -106,7 +106,7 @@ a.onmousemove = function (move) {
     }
 };
 
-
+000015
 var moveCam = function () {
     console.log("move");
     camPitch += .01;
@@ -118,7 +118,7 @@ var moveCam = function () {
 draw = function () {
     a.width = a.width;
     c.rect(0,0,a.width,a.height)
-    c.fillStyle = "#000000"
+    c.fillStyle = "#"
     c.fill();
     points = [];
     for (i in stars) {
