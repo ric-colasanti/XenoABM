@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="shortcut icon" href="img/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
@@ -47,19 +47,36 @@
       .canvas {
         grid-column: 1 / 5;
       }
+      a:link {
+        text-decoration: none;
+      }
+      a {
+        color: lightskyblue;
+      }
     </style>
   </head>
   <body>
-    <p>Pure JavaScript galaxy viewer ( well 15000 stars any way)</p>
+    <p>
+      Pure JavaScript <a href = "https://en.wikipedia.org/wiki/Drake_equation">Drake equation</a> galaxy viewer ( well 15000 stars any way)
+    </p>
     <ul>
-      <li>Move mouse with right button down to change view. Yaw left-right. Pitch up-down</li>
+      <li>
+        Move mouse with right button down to change view. Yaw left-right. Pitch
+        up-down
+      </li>
       <li>
         ctr z to change to zoom mode. Move mouse up and down with right button
-        down to change zoom. 
+        down to change zoom.
       </li>
       <li>ctr z again to change back to move mode</li>
     </ul>
-    <div>Brought to you by the <a href = "https://ric-colasanti.github.io/XenoABM/">Glasgow XenoABM team </a><a href="https://ric-colasanti.github.io/HeronGames/RoswellRunner/"> <img src="img/icon.png" style="height: 30px; width:30px"> </a></div>
+    <div>
+      A work in progress, brought to you by the Glasgow
+      <a href="https://ric-colasanti.github.io/XenoABM/">XenoABM</a> collective
+      <a href="https://ric-colasanti.github.io/HeronGames/RoswellRunner/">
+        <img src="img/icon.png" style="height: 30px; width: 30px" />
+      </a>
+    </div>
     <br />
     <div class="grid-container" style="color: lightgreen">
       <div>
@@ -71,10 +88,10 @@
           <div>camz:</div>
           <div><span id="camz">-3500</span></div>
         </div>
-    
+
         <div class="grid-container">
           <div>Probability of planets.....:</div>
-          <div  style="float: right;">
+          <div style="float: right">
             <input
               id="plantSlider"
               type="range"
@@ -87,10 +104,9 @@
           </div>
         </div>
 
-    
         <div class="grid-container">
           <div>Probability that habitable.:</div>
-          <div style="float: right;">
+          <div style="float: right">
             <input
               id="habitableSlider"
               type="range"
@@ -103,10 +119,9 @@
           </div>
         </div>
 
-    
         <div class="grid-container">
           <div>Probability of life........:</div>
-          <div style="float: right;">
+          <div style="float: right">
             <input
               id="lifeSlider"
               type="range"
@@ -119,10 +134,9 @@
           </div>
         </div>
 
-    
         <div class="grid-container">
           <div>Probability of intelligence:</div>
-          <div style="float: right;">
+          <div style="float: right">
             <input
               id="intelligentSlider"
               type="range"
@@ -135,11 +149,9 @@
           </div>
         </div>
 
-
-    
         <div class="grid-container">
           <div>Probability of technology..:</div>
-          <div style="float: right;">
+          <div style="float: right">
             <input
               id="technologySlider"
               type="range"
@@ -152,8 +164,6 @@
           </div>
         </div>
 
-
-        
         <div class="grid-container">
           <div>Show all stars....................:</div>
           <div><input type="checkbox" id="stars" checked /></div>
@@ -161,17 +171,17 @@
 
         <div class="grid-container">
           <div>Show stars with planets...........:</div>
-          <div><input type="checkbox" id="justplanets"checked /></div>
+          <div><input type="checkbox" id="justplanets" checked /></div>
         </div>
 
         <div class="grid-container">
           <div>Show stars with habitable planets :</div>
-          <div><input type="checkbox" id="test" checked/></div>
+          <div><input type="checkbox" id="test" checked /></div>
         </div>
 
         <div class="grid-container">
           <div>Show stars with life..............:</div>
-          <div><input type="checkbox" id="clife" checked/></div>
+          <div><input type="checkbox" id="clife" checked /></div>
         </div>
 
         <!-- <div class="grid-container">
@@ -183,8 +193,6 @@
           <div>Show stars with technology........:</div>
           <div><input type="checkbox" id="ctechnology"checked /></div>
         </div> -->
-
-
       </div>
       <canvas id="starfield" width="600" height="600"></canvas>
     </div>
@@ -193,7 +201,6 @@
       <a href="https://codepen.io/xem/pen/oOVYzg?editors=1010"> xem</a> for
       starting point for the 3d viewer
     </p>
-    
 
     <script src="js/starviewer.js"></script>
   </body>
