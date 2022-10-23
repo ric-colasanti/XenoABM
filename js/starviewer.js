@@ -144,7 +144,7 @@ canvas.onmousemove = function (move) {
             position.y = move.clientY
         } else {
             camYaw += -(position.x - move.clientX) / 200
-            camRoll += -(position.y - move.clientY) / 200
+            camPitch += -(position.y - move.clientY) / 200
             position.x = move.clientX
             position.y = move.clientY
         }
