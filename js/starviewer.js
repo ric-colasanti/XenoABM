@@ -2,13 +2,15 @@ canvas = document.getElementById("starfield")
 ctx = canvas.getContext("2d");
 camx = 0;
 camy = 0;
-camz = -10000;
+camz = -7000;
 camYaw = 10;
 camPitch = 15;
 camRoll = 25;
 w = canvas.width / 2;
 h = canvas.height / 2;
 perspective = 500;
+probPlanets = 0.0
+probShowAll = true
 
 
 // Define the Murmur3Hash function
@@ -19,7 +21,7 @@ function MurmurHash3(string) {
         hash = Math.imul(bitwise_xor_from_character, 3432918353);
         hash = hash << 13 | hash >>> 19;
     } return () => {
-       // Return the hash that you can use as a seed
+        // Return the hash that you can use as a seed
         hash = Math.imul(hash ^ (hash >>> 16), 2246822507);
         hash = Math.imul(hash ^ (hash >>> 13), 3266489909);
         return (hash ^= hash >>> 16) >>> 0;
@@ -28,15 +30,15 @@ function MurmurHash3(string) {
 
 function SimpleFastCounter32(seed_1, seed_2, seed_3, seed_4) {
     return () => {
-      seed_1 >>>= 0; seed_2 >>>= 0; seed_3 >>>= 0; seed_4 >>>= 0;
-      let cast32 = (seed_1 + seed_2) | 0;
-      seed_1 = seed_2 ^ seed_2 >>> 9;
-      seed_2 = seed_3 + (seed_3 << 3) | 0;
-      seed_3 = (seed_3 << 21 | seed_3 >>> 11);
-      seed_4 = seed_4 + 1 | 0;
-      cast32 = cast32 + seed_4 | 0;
-      seed_3 = seed_3 + cast32 | 0;
-      return (cast32 >>> 0) / 4294967296;
+        seed_1 >>>= 0; seed_2 >>>= 0; seed_3 >>>= 0; seed_4 >>>= 0;
+        let cast32 = (seed_1 + seed_2) | 0;
+        seed_1 = seed_2 ^ seed_2 >>> 9;
+        seed_2 = seed_3 + (seed_3 << 3) | 0;
+        seed_3 = (seed_3 << 21 | seed_3 >>> 11);
+        seed_4 = seed_4 + 1 | 0;
+        cast32 = cast32 + seed_4 | 0;
+        seed_3 = seed_3 + cast32 | 0;
+        return (cast32 >>> 0) / 4294967296;
     }
 }
 
@@ -56,38 +58,6 @@ function randn_bm() {
     return num
 }
 
-document.addEventListener('keydown', function (event) {
-    if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
-        zoomFlag = !zoomFlag
-    }
-    zoom = "Off"
-    if (zoomFlag) {
-        zoom = "On"
-    }
-    document.getElementById("zoom").innerHTML = zoom
-});
-
-
-rotate = (a, b, angle) => [
-    Math.cos(angle) * a - Math.sin(angle) * b,
-    Math.sin(angle) * a + Math.cos(angle) * b
-];
-stars = [];
-for (i = 0; i < 15000; i += 1) {
-    x = (10 - randn_bm() * 20) * randn_bm() * 180;
-    y = (20 - randn_bm() * 40) * randn_bm() * 180;
-    z = (20 - randn_bm() * 40) * randn_bm() * 180;
-    color = "#FFFFfe"//genHexColor();
-    size = 1//randn_bm() * 10
-    stars.push({ x, y, z, size, color });
-
-}
-downFlag = false
-zoomFlag = false
-var position = {
-    x: 0,
-    y: 0
-};
 
 function genHexColor() {
     const hex = '9ABCDEF';
@@ -114,11 +84,48 @@ const newShade = (hexColor, magnitude) => {
         let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
         b > 255 && (b = 255);
         b < 0 && (b = 0);
-        return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
+        return `#${(g << 16 | (b << 16) | (r << 16)).toString(16)}`;
     } else {
         return hexColor;
     }
 };
+
+
+
+document.addEventListener('keydown', function (event) {
+    if (event.code == 'KeyZ' && (event.ctrlKey || event.metaKey)) {
+        zoomFlag = !zoomFlag
+    }
+    zoom = "Off"
+    if (zoomFlag) {
+        zoom = "On"
+    }
+    document.getElementById("zoom").innerHTML = zoom
+});
+
+document.getElementById("plantSlider").addEventListener('change', function (e) {
+    probPlanets = this.value / 15000;
+    document.getElementById("planets").innerHTML = probPlanets.toFixed(5)
+    draw()
+});
+
+document.getElementById("justplanets").addEventListener('change', function (e) {
+    probShowAll = ! this.checked;
+    draw()
+});
+
+
+rotate = (a, b, angle) => [
+    Math.cos(angle) * a - Math.sin(angle) * b,
+    Math.sin(angle) * a + Math.cos(angle) * b
+];
+
+var position = {
+    x: 0,
+    y: 0
+};
+
+
 canvas.onmousedown = function (down) {
     downFlag = true;
     // Record click position
@@ -145,14 +152,43 @@ canvas.onmousemove = function (move) {
         document.getElementById("camz").innerHTML = camz;
     }
 };
-
-
 var moveCam = function () {
     camPitch += .01;
     camYaw += .01;
     camRoll += .01;
     draw()
 }
+
+
+
+
+
+class Star {
+    constructor(x, y, z, size, color, planets) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.size = size;
+        this.color = color;
+        this.planets = planets;
+    }
+}
+
+
+
+stars = [];
+for (i = 0; i < 15000; i += 1) {
+    x = (10 - randn_bm() * 20) * randn_bm() * 180;
+    y = (20 - randn_bm() * 40) * randn_bm() * 180;
+    z = (20 - randn_bm() * 40) * randn_bm() * 180;
+    color = [255, 255, 255]
+    size = 3//randn_bm() * 10
+    planets = random_number()
+    stars.push(new Star(x, y, z, size, color, planets));
+
+}
+downFlag = false
+zoomFlag = false
 
 draw = function () {
     ctx.rect(0, 0, canvas.width, canvas.height)
@@ -171,7 +207,15 @@ draw = function () {
         z -= camz;
         color = stars[i].color;
         size = stars[i].size
-        points.push({ x, y, z, size, color });
+        if (z > camz) {
+            if (probShowAll) {
+                points.push({ x, y, z, size, color });
+            } else {
+                if (stars[i].planets < probPlanets) {
+                    points.push({ x, y, z, size, color });
+                }
+            }
+        }
     }
 
     points.sort((a, b) => b.z - a.z);
@@ -179,7 +223,7 @@ draw = function () {
         x = points[i].x;
         y = points[i].y;
         z = points[i].z;
-        color = newShade(points[i].color, -250 * (points.length - i) / points.length);
+        color = [points[i].color[0] * (i) / points.length, points[i].color[1] * (i) / points.length, points[i].color[2] * (i) / points.length, 1.0]//(i) / points.length];
 
 
 
@@ -190,7 +234,7 @@ draw = function () {
             Y = h + y / z * perspective;
             ctx.beginPath();
             ctx.arc(X, Y, size, 0, 2 * Math.PI);
-            ctx.fillStyle = color;
+            ctx.fillStyle = "rgba(" + color[0] + "," + color[1] + "," + color[2] + "," + color[3] + ")";
             ctx.fill();
         }
     }

@@ -67,12 +67,17 @@
         </div>
         <div class="grid-container">
             <div>camz:</div>
-            <div> <span id="camz">-10000</span></div>
+            <div> <span id="camz">-7000</span></div>
         </div>
         <div class="grid-container">
-        
-            <!-- <div><input type="range" min="1" max="100" value="50" class="slider" /></div>  
-            <div></div>    -->
+            <div>Probability of planets:</div>
+            <div><input id="plantSlider" type="range" min="0" max="15000" value="0" class="slider" /><br> <span id="planets">0.00000</span>
+            </div>  
+        </div>
+        <div class="grid-container">
+            <div>Show just stars with planets:</div>
+            <div><input type="checkbox" id="justplanets">
+            </div>  
         </div>
     </div>
     <canvas id="starfield" width="600" height="600"></canvas>
