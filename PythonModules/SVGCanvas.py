@@ -1,3 +1,4 @@
+
 class SVGCanvas:
     def __init__(self,width,height,size):
         self.width = width
@@ -30,4 +31,4 @@ class SVGCanvas:
 
     def getCanvas(self):
         self.html_s += "</svg>"
-        return HTML(self.html_s)
+        return self.html_s
