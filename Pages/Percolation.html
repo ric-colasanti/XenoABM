@@ -14,14 +14,10 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
 
-
-
       .bgTextBox {
         background-color: rgb(241, 241, 241);
         padding: 10px;
       }
-
-
     </style>
 
     <title>XenoABM</title>
@@ -68,9 +64,7 @@
                 Models
               </a>
               <div class="dropdown-menu">
-                <a
-                  class="dropdown-item"
-                  href="/Pages/Percolation.html"
+                <a class="dropdown-item" href="/Pages/Percolation.html"
                   >Percolation models</a
                 >
               </div>
@@ -82,80 +76,43 @@
 
     <div class="container" style="margin-top: 80px">
       <div class="jumbotron bgTextBox">
-        <h1>XenoABM Group</h1>
+        <h1>Percolation models</h1>
+        <p>Percolation models describe stochastic-geometry. That is systems of spatially distributed objects that have random connections to the other objects. The connectivity of the compleat system, that is the ability to traverse the space from one object to another, is a function of the probability of two objects being connected. Percolation systems exhibit phase transitions. Below a critical probability of connectivity there is no contiguous path from one object to another that will allow long-range connectivity. </p>
         <p>
-          We are a group of computational modelers who are interested in asking
-          the question, <i>Are we alone in the universe?</i> This is a binary
-          question and the result is profound whether it is TRUE or FALSE.
-        </p>
-        <p>
-          In our regular work we use Agent Based Models (ABMs) to investigate
-          complex social systems. We are using the same ABM techniques to model
-          possible answers to Fermi's paradox, "But where is everybody?"
+          This approach is outlined by Steven Webb [1] as: "<i
+            >They Exist, But We Have Yet to See or Hear from Them: Solution 13 A
+            Percolation Theory Approach</i
+          >".
         </p>
       </div>
 
-      <h5>The Fermi paradox</h5>
+      <h5>Landis Percolation Models</h5>
       <div class="row">
         <div class="col-sm-4">
-          <img src="img/800px-Enrico_Fermi_1943-49.jpg" width="100%" />
+          <img src="/img/Landis.png" width="100%" />
         </div>
         <div class="col-sm-8 bgTextBox">
+          <p></p>
           <p>
-            While walking to lunch in the summer of 1950 in the grounds of Los
-            Alamos National Laboratory the physicists Edward Teller, Herbert
-            York, Emil Konopinskia and Enrico Fermi were discussing one of the
-            first nationwide media coverages of UFO sightings. At the end of the
-            conversation Enrico Fermi, a true genius and an intuitive modeller
-            exclaimed "But where is everybody?"
-          </p>
-          <p>
-            To quote Steven Webb [1] "<i
-              >The debate about extraterrestrial intelligence contains just one
-              gleaming, hard fact: we haven’t been visited by ETCs </i
-            >[Extra Terrestrial Civilizations]<i>
-              nor have we heard from them.</i
-            >" But given the size and age of the universe and the potential for
-            life and intelligent space-faring life, why not? This in essence is
-            the Fermi paradox.
-          </p>
-
-          <p>
-            Steven Webb's book
-            <i>If the universe is teeming with aliens... where is everybody?</i>
-            [1] lists 75 possible solutions. We are are modeling some of these
-            solutions using ABMs. Our first attempts involve modeling possible
-            galactic colonization as a percolation model
-          </p>
-        </div>
-      </div>
-
-      <br />
-      <h5>Percolation Models</h5>
-      <div class="row">
-        <div class="col-sm-4">
-          <img src="img/Landis.png" width="100%" />
-        </div>
-        <div class="col-sm-8 bgTextBox">
-          <p>
-            We are working on the assumption that at a certain level of
-            technical development an intelligent civilization will expand beyond
-            its planetary system and inhabit and colonize neighboring star
-            systems. We are also assuming that the colonization front expands
-            from one local neighborhood to another. There are no long jumps.
-            Given these assumptions we propose that a percolation model is a
-            good approximation for this process.
-          </p>
-          <p>
-            This approach is outlined by Steven Webb as: "<i
-              >They Exist, But We Have Yet to See or Hear from Them: Solution 13
-              A Percolation Theory Approach</i
-            >". We have recreated two of the main galactic colonization
-            percolation models
+            We have recreated the
             <a
               href="https://colab.research.google.com/drive/1E83YCN82B62Zro3tYsTMZZVqol55V7jQ?authuser=1"
               >Landis Percolation</a
-            >[2] and the
+            >[2]
+          </p>
+          <p></p>
+        </div>
+      </div>
+
+      <h5>Landis Percolation Models</h5>
+      <div class="row">
+        <div class="col-sm-4">
+          <img src="/img/Gleria.png" width="100%" />
+        </div>
+        <div class="col-sm-8 bgTextBox">
+          <p></p>
+          <p>
+            We have recreated the
             <a
               href="https://colab.research.google.com/drive/1lj2DPR768c4FPtaV4Z36fvjiOSIJBJNX?authuser=1"
               >Gleria model</a
