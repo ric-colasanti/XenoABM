@@ -14,36 +14,14 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
 
-      html {
-        scroll-behavior: smooth;
-      }
+
 
       .bgTextBox {
         background-color: rgb(241, 241, 241);
         padding: 10px;
       }
 
-      .bgDemo {
-        border-style: solid;
-        border-width: 0.5px;
-        padding: 10px;
-      }
 
-      .highlight pre {
-        white-space: pre-wrap;
-      }
-
-      .nav-item {
-        cursor: pointer;
-      }
-
-      .ref {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        font-size: x-small;
-        font-style: italic;
-      }
     </style>
 
     <title>XenoABM</title>
@@ -108,7 +86,7 @@
     </nav>
 
     <div class="container" style="margin-top: 80px">
-      <div class="jumbotron">
+      <div class="jumbotron bgTextBox">
         <h1>XenoABM Group</h1>
         <p>
           We are a group of computational modelers who are interested in asking
@@ -154,18 +132,10 @@
             solutions using ABMs. Our first attempts involve modeling possible
             galactic colonization as a percolation model
           </p>
-
-          <div class="ref">
-            [1] Webb, Stephen. If the universe is teeming with aliens... where
-            is everybody?: seventy-five solutions to the fermi paradox and the
-            problem of extraterrestrial life. Springer International Publishing,
-            2015.<a href="https://link.springer.com/978-3-319-13236-5"
-              >Download</a
-            >
-          </div>
         </div>
       </div>
-      <br>
+
+      <br />
       <h5>Percolation Models</h5>
       <div class="row">
         <div class="col-sm-4">
@@ -173,30 +143,61 @@
         </div>
         <div class="col-sm-8 bgTextBox">
           <p>
-            We are working on the assumption that at a certain level of technical development an intelligent civilization will expand beyond its planetary system and inhabit and colonize neighboring star systems. We are also assuming that the colonization front expands from one local neighborhood to another. There are no long jumps. Given these assumptions we propose that a percolation model is a good approximation for this process. 
+            We are working on the assumption that at a certain level of
+            technical development an intelligent civilization will expand beyond
+            its planetary system and inhabit and colonize neighboring star
+            systems. We are also assuming that the colonization front expands
+            from one local neighborhood to another. There are no long jumps.
+            Given these assumptions we propose that a percolation model is a
+            good approximation for this process.
           </p>
-          <p>This approach is outlined by Steven Webb as: "<i>They Exist, But We Have Yet to See or Hear from Them: Solution 13 A Percolation Theory Approach</i>". We have recreated two of the main galactic colonization percolation models
-          <a href="https://colab.research.google.com/drive/1E83YCN82B62Zro3tYsTMZZVqol55V7jQ?authuser=1"
-          >Landis Percolation</a>[1] and the <a href="https://colab.research.google.com/drive/1lj2DPR768c4FPtaV4Z36fvjiOSIJBJNX?authuser=1"
-          >Gleria model</a>[2]</p>
-          <p>  </p>
-
-
-          <div class="ref">
-            <p> [1]Landis, Geoffrey A. "The Fermi paradox: an approach based on percolation theory." Journal of the british interplanetary society 51.5 (1998): 163-166. <a href="http://www.geoffreylandis.com/percolation.htp"
-              >Download</a>
-              </p><p>
-              
-              [2] Galera, E., Guilherme Roncaratti Galanti, and Osame Kinouchi. "Invasion percolation solves Fermi Paradox but challenges SETI projects." International Journal of Astrobiology 18.4 (2019): 316-322. <a href="https://www.cambridge.org/core/journals/international-journal-of-astrobiology/article/abs/invasion-percolation-solves-fermi-paradox-but-challenges-seti-projects/92013B48A6A33F98816A417B0254CE68"
-              >Download</a>
-            </p>
-           
-            
-          </div>
+          <p>
+            This approach is outlined by Steven Webb as: "<i
+              >They Exist, But We Have Yet to See or Hear from Them: Solution 13
+              A Percolation Theory Approach</i
+            >". We have recreated two of the main galactic colonization
+            percolation models
+            <a
+              href="https://colab.research.google.com/drive/1E83YCN82B62Zro3tYsTMZZVqol55V7jQ?authuser=1"
+              >Landis Percolation</a
+            >[2] and the
+            <a
+              href="https://colab.research.google.com/drive/1lj2DPR768c4FPtaV4Z36fvjiOSIJBJNX?authuser=1"
+              >Gleria model</a
+            >[3]
+          </p>
+          <p></p>
         </div>
+      </div>
 
-      
-
+      <br />
+      <h5>Bibliography</h5>
+      <div class="row">
+        <div class="col-sm-12 bgTextBox"">
+        <p>
+          [1] Webb, Stephen. If the universe is teeming with aliens... where is
+          everybody?: seventy-five solutions to the fermi paradox and the
+          problem of extraterrestrial life. Springer International Publishing,
+          2015.<a href="https://link.springer.com/978-3-319-13236-5"
+            >Download</a
+          >
+        </p>
+        <p>
+          [2]Landis, Geoffrey A. "The Fermi paradox: an approach based on
+          percolation theory." Journal of the british interplanetary society
+          51.5 (1998): 163-166.
+          <a href="http://www.geoffreylandis.com/percolation.htp">Download</a>
+        </p>
+        <p>
+          [3] Galera, E., Guilherme Roncaratti Galanti, and Osame Kinouchi.
+          "Invasion percolation solves Fermi Paradox but challenges SETI
+          projects." International Journal of Astrobiology 18.4 (2019): 316-322.
+          <a
+            href="https://www.cambridge.org/core/journals/international-journal-of-astrobiology/article/abs/invasion-percolation-solves-fermi-paradox-but-challenges-seti-projects/92013B48A6A33F98816A417B0254CE68"
+            >Download</a
+          >
+        </p>
+      </div>
     </div>
 
     <!-- Latest compiled JavaScript -->
